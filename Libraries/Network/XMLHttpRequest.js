@@ -253,6 +253,10 @@ class XMLHttpRequest extends EventTarget(...XHR_EVENTS) {
       case 'blob':
         if (typeof this._response === 'object' && this._response) {
           this._cachedResponse = BlobManager.createFromOptions(this._response);
+        } else if (this._response === '') {
+          console.log('blob response cannot be an empty string')
+        } else if (typeof this._response === 'string') {
+          console.log('blob response cannot be type of string')
         } else {
           throw new Error(`Invalid response for blob: ${this._response}`);
         }
